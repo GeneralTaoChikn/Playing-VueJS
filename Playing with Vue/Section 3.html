@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue Basics</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://unpkg.com/vue@next" defer></script>
+    <script src="Section3.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <h1><a href="index.html">HOME</a></h1>
+    </header>
+    <section id="user-goal">
+      <input type="text" v-model="inputGoal" >
+      <button @click="pushGoal()">Add Goal</button>
+      <p v-if="goalArray.length ===0">No Goals listed</p>
+      <ul v-else>
+        <li v-for="(goals, index) in goalArray" @click="removeGoal(index)">{{goals}} - {{index}}</li>
+      </ul>
+      <!-- Assignment5 -->
+      <h2>Assignment 5</h2>
+      <input type="text" v-model="inputTask">
+      <button @click="pushTask()">Add Task</button>
+
+      <ul v-if="show" v-for="(task, index) in Task" @click="removeTask(index)">
+          <li>{{task}}</li>
+      </ul>
+      <br> <br>
+      <button @click= "show = !show">Hide/Show List</button>
+    </section>
+  </body>
+</html>

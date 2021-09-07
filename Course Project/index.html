@@ -17,27 +17,41 @@
       <h1>Monster Slayer</h1>
     </header>
     <div id="game">
+      <!-- MONSTER HEALTH -->
       <section id="monster" class="container">
         <h2>Monster Health</h2>
         <div class="healthbar">
-          <div class="healthbar__value"></div>
+      <!-- PLAYER HEALTH -->
+          <div class="healthbar__value" :style="monsterBarStyle"></div>
         </div>
       </section>
       <section id="player" class="container">
         <h2>Your Health</h2>
         <div class="healthbar">
-          <div class="healthbar__value"></div>
+          <div class="healthbar__value" :style="playerBarStyle"></div>
         </div>
       </section>
-      <section id="controls">
-        <button>ATTACK</button>
-        <button>SPECIAL ATTACK</button>
-        <button>HEAL</button>
-        <button>SURRENDER</button>
+      <!-- result of game -->
+      <section v-if = "winner" class="container">
+      <!-- <section class="container"> -->
+          <h2>{{winner}}</h2>
+          <button @click="startGame">Restart</button>
+      </section>
+      <!-- CONTORLS -->
+      <section v-else id="controls">
+        <button @click="atkMonster">ATTACK</button>
+        <!-- <button disabled="true" @click="spcAtk">SPECIAL ATTACK</button> -->
+        <button :disabled="mayUseSpcAtk" @click="spcAtk">SPECIAL ATTACK</button>
+        <button @click="heal">HEAL</button>
+        <button @click="surrender">SURRENDER</button>
       </section>
       <section id="log" class="container">
         <h2>Battle Log</h2>
-        <ul></ul>
+        <p>Current Round: {{currentRound}}</p>
+        <ul>
+          <li v-for="logMessage in logMessages">{{logMessage.actionBy}} -
+             {{logMessage.actionType}} {{logMessage.actionValue}}</li>
+        </ul>
       </section>
     </div>
   </body>
