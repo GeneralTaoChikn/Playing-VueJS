@@ -19,7 +19,7 @@ export default{
         setUserData(name,age){
             this.user = {
                 name: name,
-                age: age
+                age: +age
             };
         }
     }

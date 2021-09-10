@@ -6,6 +6,10 @@
       check out the
       <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
     </p>
+    TEST?
+    <button @click="getPotato()">GetCat</button>
+    {{computedPotato}}
+    
     <h3>Installed CLI Plugins</h3>
     <ul>
       <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel" target="_blank" rel="noopener">babel</a></li>
@@ -31,10 +35,37 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   name: 'HelloWorld',
   props: {
     msg: String
+  },
+  created(){
+      this.getPotato()
+  },
+   computed: {
+    // a computed getter
+    computedPotato: function () {
+      // `this` points to the vm instance
+      console.log(this.test,'test?')
+      return this.test
+    }
+  },
+  methods:{
+    getPotato(){
+
+    axios.get('https://catfact.ninja/fact')
+      .then(response => {
+        console.log(response.data.fact)
+        this.test = response.data.fact
+      })
+    },
+    data(){
+      return{
+        test:null
+      }
+    }
   }
 }
 </script>
