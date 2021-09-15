@@ -1,18 +1,24 @@
 <template>
     <div>   
-        <h1>test</h1>
-        <p>helloWorld</p>
+        <p>Test This Shit</p>
         <ul>
-            <resource-item></resource-item>
+            <resource-item v-for="resource in storedResources"
+                :key="resource.id"
+                :title="resource.title"
+                :description="resource.description"
+                :link="resource.link"
+                ></resource-item>
         </ul>
     </div>
 </template>
 
 <script>
 import ResourceItem from './components/ResourceItem.vue'
+
+
 export default{
     components: {
-        'Resource-Item': ResourceItem
+        'resource-item': ResourceItem
     },
     data() {
         return{
@@ -32,5 +38,5 @@ export default{
             ]
         }
     }
-}
+};
 </script>
